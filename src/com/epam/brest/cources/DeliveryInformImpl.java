@@ -1,4 +1,5 @@
-import java.sql.SQLOutput;
+package com.epam.brest.cources;
+
 import java.util.Scanner;
 
 public class DeliveryInformImpl implements IDeliveryInform {

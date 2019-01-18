@@ -31,7 +31,7 @@ public class DeliveryInformImpl implements IDeliveryInform {
     }
 
     @Override
-    public void setDdeliveryParameters() {
+    public void setDeliveryParameters() {
         Scanner scanner = new Scanner(System.in);
        try {
            System.out.println("Weight of your product(kg)");

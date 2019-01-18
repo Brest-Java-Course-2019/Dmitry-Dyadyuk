@@ -1,4 +1,4 @@
 public interface IDeliveryInform {
-    void setDdeliveryParameters();
+    void setDeliveryParameters();
     void totalPrice();
 }

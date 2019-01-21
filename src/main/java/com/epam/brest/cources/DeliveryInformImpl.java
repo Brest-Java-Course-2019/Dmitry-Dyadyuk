@@ -49,7 +49,7 @@ public class DeliveryInformImpl implements IDeliveryInform {
         Properties properties = new Properties();
        try {
 
-           fileInputStream = new FileInputStream("/home/dd/IdeaProjects/DeliveryCost/src/main/resources/cost.properties");
+           fileInputStream = new FileInputStream("src/main/resources/cost.properties");
            properties.load(fileInputStream);
 
            float minWeightPrice = Float.parseFloat(properties.getProperty("min.weight"));

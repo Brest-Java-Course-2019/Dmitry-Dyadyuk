@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.Scanner;
 
-public class DeliveryInformImpl implements IDeliveryInform {
+public class DeliveryInformImpl implements DeliveryInform {
     private static float weight;
     private static float distance;
     private static float costOfProduct;

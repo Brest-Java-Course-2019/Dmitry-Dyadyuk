@@ -1,6 +1,6 @@
 package com.epam.brest.cources;
 
-public interface IDeliveryInform {
+public interface DeliveryInform {
     void setDeliveryParameters();
     void totalPrice();
 }

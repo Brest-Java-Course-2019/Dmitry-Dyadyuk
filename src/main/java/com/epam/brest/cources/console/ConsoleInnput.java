@@ -8,7 +8,7 @@ import com.epam.brest.cources.fileReader.Reader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.xml.crypto.Data;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Map;
@@ -33,9 +33,9 @@ public class ConsoleInnput {
 
 
     public void run(){
-        DataItem data = new DataItem();
+        DataItem data;
         data = getData();
-        BigDecimal calculate = calc(data);
+        calc(data);
     }
 
     private BigDecimal calc(DataItem dataItem){
@@ -77,9 +77,9 @@ public class ConsoleInnput {
            if(weight.floatValue() <= 5){
                return  map.get("min.weight");
            } else if(weight.floatValue() > 5 && weight.floatValue() <= 10 ){
-               return  map.get("normal.value");
+               return  map.get("normal.weight");
            } else {
-               return map.get("max.value");
+               return map.get("max.weight");
            }
        }
        catch (NullPointerException err){

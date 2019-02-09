@@ -15,9 +15,8 @@ public class DataItem {
     private BigDecimal scale;
 
 
-
     public DataItem(BigDecimal weight, BigDecimal range, BigDecimal scale) {
-        if(weight.signum() <= 0 && range.signum() <=0 && scale.signum() <=0) LOGGER.error(ERROR_INFO );
+        if (weight.signum() <= 0 && range.signum() <= 0 && scale.signum() <= 0) LOGGER.error(ERROR_INFO);
         this.weight = weight;
         this.range = range;
         this.scale = scale;

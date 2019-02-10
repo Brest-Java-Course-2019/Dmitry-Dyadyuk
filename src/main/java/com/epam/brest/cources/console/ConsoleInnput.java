@@ -8,21 +8,19 @@ import com.epam.brest.cources.fileReader.Reader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleInnput {
+    private static Logger LOGGER = LogManager.getLogger();
+    private static String[] MESSAGES = {"Enter the weight in kg", "Enter the distance in km"};
+    private static String ERROR_MESSAGE = "Error was detected  {}";
     private Scanner scanner;
     private DataItem dataItem;
     private Reader reader;
     private Calculator calculator;
-
-    private static Logger LOGGER = LogManager.getLogger();
-    private static String[] MESSAGES = {"Enter the weight in kg" , "Enter the distance in km"};
-    private static String ERROR_MESSAGE = "Error was detected  {}";
 
     public ConsoleInnput() {
         this.scanner = new Scanner(System.in);
@@ -32,21 +30,21 @@ public class ConsoleInnput {
     }
 
 
-    public void run(){
+    public void run() {
         DataItem data;
         data = getData();
         calc(data);
     }
 
-    private BigDecimal calc(DataItem dataItem){
+    public BigDecimal calc(DataItem dataItem) {
         LOGGER.info("Calculation process");
         BigDecimal calcResult = calculator.calculate(dataItem);
         System.out.println("The total price is " + calcResult);
-        return  calcResult;
+        return calcResult;
     }
 
-    private DataItem getData(){
-        BigDecimal weight  = getInform(MESSAGES[0]);
+    private DataItem getData() {
+        BigDecimal weight = getInform(MESSAGES[0]);
         dataItem.setWeight(weight);
         BigDecimal range = getInform(MESSAGES[1]);
         dataItem.setRange(range);
@@ -61,31 +59,29 @@ public class ConsoleInnput {
         return dataItem;
     }
 
-    private BigDecimal getInform(String message){
+    public BigDecimal getInform(String message) {
         System.out.println(message);
-        try{
-         return scanner.nextBigDecimal();
-    }
-        catch (IllegalArgumentException | NullPointerException err){
-            LOGGER.error(ERROR_MESSAGE, err );
+        try {
+            return scanner.nextBigDecimal();
+        } catch (IllegalArgumentException | NullPointerException err) {
+            LOGGER.error(ERROR_MESSAGE, err);
         }
         return null;
     }
 
-    private BigDecimal receiveScale(Map<String,BigDecimal> map , BigDecimal weight){
-       try{
-           if(weight.floatValue() <= 5){
-               return  map.get("min.weight");
-           } else if(weight.floatValue() > 5 && weight.floatValue() <= 10 ){
-               return  map.get("normal.weight");
-           } else {
-               return map.get("max.weight");
-           }
-       }
-       catch (NullPointerException err){
-           LOGGER.error(ERROR_MESSAGE, err);
-       }
-       return null;
+    private BigDecimal receiveScale(Map<String, BigDecimal> map, BigDecimal weight) {
+        try {
+            if (weight.floatValue() <= 5) {
+                return map.get("min.weight");
+            } else if (weight.floatValue() > 5 && weight.floatValue() <= 10) {
+                return map.get("normal.weight");
+            } else {
+                return map.get("max.weight");
+            }
+        } catch (NullPointerException err) {
+            LOGGER.error(ERROR_MESSAGE, err);
+        }
+        return null;
     }
 
 }

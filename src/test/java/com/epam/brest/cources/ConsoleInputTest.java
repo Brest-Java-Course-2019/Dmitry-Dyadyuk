@@ -16,7 +16,7 @@ public class ConsoleInputTest {
     private ConsoleInnput consoleInnput;
 
     @Test
-    private void calcTest(){
+    public void calcTest(){
         consoleInnput = new ConsoleInnput();
         BigDecimal calcResult = consoleInnput.calc(dataItem);
         Assertions.assertEquals(BigDecimal.valueOf(24.0), calcResult);

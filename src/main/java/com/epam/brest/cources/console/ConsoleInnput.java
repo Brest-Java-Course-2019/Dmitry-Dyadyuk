@@ -7,6 +7,8 @@ import com.epam.brest.cources.fileReader.PropertyReader;
 import com.epam.brest.cources.fileReader.Reader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -21,12 +23,13 @@ public class ConsoleInnput {
     private DataItem dataItem;
     private Reader reader;
     private Calculator calculator;
+    private ApplicationContext applicationContext = new ClassPathXmlApplicationContext("conf.xml");
 
     public ConsoleInnput() {
-        this.scanner = new Scanner(System.in);
+        this.scanner = new Scanner(System.in, "UTF-8");
         this.dataItem = new DataItem();
-        this.reader = new PropertyReader();
-        this.calculator = new CalculatorImpl();
+        this.reader = (PropertyReader) applicationContext.getBean("propertyReader");
+        this.calculator = (CalculatorImpl) applicationContext.getBean("calculator");
     }
 
 

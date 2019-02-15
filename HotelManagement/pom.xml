@@ -14,7 +14,7 @@
         <module>dao</module>
         <module>test</module>
         <module>dao</module>
-        <module>model</module>
+        <module>htm-model</module>
         <module>hr-db</module>
     </modules>
 </project>

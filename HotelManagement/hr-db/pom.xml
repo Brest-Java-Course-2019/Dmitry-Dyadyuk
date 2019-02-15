@@ -11,5 +11,55 @@
 
     <artifactId>hr-db</artifactId>
 
+    <properties>
+        <postgres.version>42.2.5</postgres.version>
+    </properties>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <serverName>localhost</serverName>
+                <portNumber>5432</portNumber>
+                <dbName>hoteluser</dbName>
+                <userName>hoteluser</userName>
+                <password>hotelUser</password>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <configuration>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://${serverName}:${portNumber}/${dbName}</url>
+                    <user>${userName}</user>
+                    <password>${password}</password>
+                    <table>schema_version</table>
+                    <sqlMigrationSeparator>__</sqlMigrationSeparator>
+                    <encoding>UTF-8</encoding>
+                    <placeholderReplacement>false</placeholderReplacement>
+                    <validateOnMigrate>true</validateOnMigrate>
+                    <cleanOnValidationError>false</cleanOnValidationError>
+                    <ignoreFutureMigrations>false</ignoreFutureMigrations>
+
+                    <cleanDisabled>false</cleanDisabled>
+                    <skip>false</skip>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgres.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hr-db</artifactId>
+    <artifactId>hm-db</artifactId>
 
     <properties>
         <postgres.version>42.2.5</postgres.version>

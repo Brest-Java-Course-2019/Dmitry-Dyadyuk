@@ -13,7 +13,7 @@
     <modules>
         <module>dao</module>
         <module>test</module>
-        <module>dao</module>
-        <module>hr-db</module>
+        <module>htm-model</module>
+        <module>hm-db</module>
     </modules>
 </project>

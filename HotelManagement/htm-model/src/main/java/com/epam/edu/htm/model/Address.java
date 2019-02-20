@@ -1,45 +1,45 @@
 package com.epam.edu.htm.model;
 
 public class Address {
-    private Long id_address;
-    private String address1;
-    private String address2;
-    private String address3;
+    private Long idAddress;
+    private String firstAdress;
+    private String secondAddress;
+    private String thirdAddress;
     private String city;
     private String street;
-    private String postal_code;
+    private String postalCode;
 
 
-    public Long getId_address() {
-        return id_address;
+    public Long getIdAddress() {
+        return idAddress;
     }
 
-    public void setId_address(Long id_address) {
-        this.id_address = id_address;
+    public void setIdAddress(Long idAddress) {
+        this.idAddress = idAddress;
     }
 
-    public String getAddress1() {
-        return address1;
+    public String getFirstAdress() {
+        return firstAdress;
     }
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
+    public void setFirstAdress(String firstAdress) {
+        this.firstAdress = firstAdress;
     }
 
-    public String getAddress2() {
-        return address2;
+    public String getSecondAddress() {
+        return secondAddress;
     }
 
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+    public void setSecondAddress(String secondAddress) {
+        this.secondAddress = secondAddress;
     }
 
-    public String getAddress3() {
-        return address3;
+    public String getThirdAddress() {
+        return thirdAddress;
     }
 
-    public void setAddress3(String address3) {
-        this.address3 = address3;
+    public void setThirdAddress(String thirdAddress) {
+        this.thirdAddress = thirdAddress;
     }
 
     public String getCity() {
@@ -58,12 +58,24 @@ public class Address {
         this.street = street;
     }
 
-    public String getPostal_code() {
-        return postal_code;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "idAddress=" + idAddress +
+                ", firstAdress='" + firstAdress + '\'' +
+                ", secondAddress='" + secondAddress + '\'' +
+                ", thirdAddress='" + thirdAddress + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                '}';
+    }
 }

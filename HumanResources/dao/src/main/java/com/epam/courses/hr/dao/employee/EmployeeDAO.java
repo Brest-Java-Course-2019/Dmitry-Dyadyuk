@@ -7,10 +7,8 @@ import java.util.stream.Stream;
 
 public interface EmployeeDAO {
     Stream<Employee> findAll();
-
     Optional<Employee> findById(Integer id);
-
-    void add(Employee employee);
+    Optional<Employee> add(Employee employee);
     void update(Employee employee);
-    void remove(Integer id);
+    void delete(Integer id);
 }

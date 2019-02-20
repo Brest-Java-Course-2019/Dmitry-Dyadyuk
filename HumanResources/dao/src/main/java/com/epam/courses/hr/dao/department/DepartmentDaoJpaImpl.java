@@ -97,7 +97,7 @@ public class DepartmentDaoJpaImpl implements DepartmentDao {
     @Override
     public void update(Department department) {
          Optional.of(namedParameterJdbcTemplate.update(UPDATE, new BeanPropertySqlParameterSource(department)))
-                .filter(this::successfullyUpdated)
+                    .filter(this::successfullyUpdated)
                 .orElseThrow(() -> new RuntimeException("Failed to update department in DB"));
     }
 

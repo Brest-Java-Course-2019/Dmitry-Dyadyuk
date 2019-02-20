@@ -11,5 +11,8 @@
     <bean id="departmentDao" class="com.epam.courses.hr.dao.department.DepartmentDaoJpaImpl">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
+    <bean id="emplyeeDao" class="com.epam.courses.hr.dao.employee.EmployeeDAOImpl">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
 
 </beans>

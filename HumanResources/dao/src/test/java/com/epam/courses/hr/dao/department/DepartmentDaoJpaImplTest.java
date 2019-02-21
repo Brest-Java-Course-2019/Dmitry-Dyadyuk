@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -78,7 +79,7 @@ class DepartmentDaoJpaImplTest {
         Department newDepartment = departmentDao.add(department2).get();
         assertNotNull(newDepartment.getDepartmentId());
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(DuplicateKeyException.class, () -> {
             departmentDao.add(department2);
         });
     }

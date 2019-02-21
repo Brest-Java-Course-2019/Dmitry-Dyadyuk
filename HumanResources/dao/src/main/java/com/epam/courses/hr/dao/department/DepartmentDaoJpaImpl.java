@@ -26,7 +26,7 @@ public class DepartmentDaoJpaImpl implements DepartmentDao {
     private static final String FIND_BY_ID = "select departmentId, departmentName, departmentDescription from department where departmentId = :departmentId";
     private static final String CHECK_COUNT_NAME = "select count(departmentId) from department where lower(departmentName) = lower(:departmentName)";
     private static final String INSERT = "insert into department (departmentName, departmentDescription) values (:departmentName, :departmentDescription)";
-    private static final String UPDATE = "update department set departmentName = :departmentName, departmentDescription = :departmentDescription where departmentId = :departmentId";
+    private static final String UPDATE = "update department set departmentName = :departmentName, departmentDescription = :departmentDescription where departmentId = :departmentId ";
     private static final String DELETE = "delete from department where departmentId = :departmentId";
     private static final String DEPARTMENT_ID = "departmentId";
     private static final String DEPARTMENT_NAME = "departmentName";
@@ -62,11 +62,7 @@ public class DepartmentDaoJpaImpl implements DepartmentDao {
                 .orElseThrow(() -> new IllegalArgumentException("Department with the same name already exsists in DB."));
     }
 
-    private boolean isNameUnique(Department department) {
-        return namedParameterJdbcTemplate.queryForObject(CHECK_COUNT_NAME,
-                new MapSqlParameterSource(DEPARTMENT_NAME, department.getDepartmentName()),
-                Integer.class) == 0;
-    }
+
 
     private Optional<Department> insertDepartment(Department department) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();

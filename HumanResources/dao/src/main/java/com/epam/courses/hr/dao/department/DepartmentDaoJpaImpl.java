@@ -24,7 +24,7 @@ public class DepartmentDaoJpaImpl implements DepartmentDao {
 
     private static final String SELECT_ALL = "select departmentId, departmentName, departmentDescription from department";
     private static final String FIND_BY_ID = "select departmentId, departmentName, departmentDescription from department where departmentId = :departmentId";
-    private static final String CHECK_COUNT_NAME = "select count(departmentId) from department where lower(departmentName) = lower(:departmentName)";
+
     private static final String INSERT = "insert into department (departmentName, departmentDescription) values (:departmentName, :departmentDescription)";
     private static final String UPDATE = "update department set departmentName = :departmentName, departmentDescription = :departmentDescription where departmentId = :departmentId ";
     private static final String DELETE = "delete from department where departmentId = :departmentId";

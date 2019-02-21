@@ -58,7 +58,6 @@ public class DepartmentDaoJpaImpl implements DepartmentDao {
     public Optional<Department> add(Department department) {
         LOGGER.debug("add({})", department);
         return Optional.of(department)
-                .filter(this::isNameUnique)
                 .map(this::insertDepartment)
                 .orElseThrow(() -> new IllegalArgumentException("Department with the same name already exsists in DB."));
     }

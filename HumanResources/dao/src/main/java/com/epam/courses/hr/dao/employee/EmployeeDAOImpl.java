@@ -21,16 +21,17 @@ import java.util.stream.Stream;
 public class EmployeeDAOImpl implements EmployeeDAO{
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeDAOImpl.class);
     private static final String SELECT_ALL =
-            "select (employeeId, firstName, lastName) from employee";
+            "select employeeId, firstName, LastName, departmentId, salary from employee";
     private static final String FIND_BY_ID =
-            "select (firstName, LastName) from employee where employeeId = :employeeId";
+            "select  employeeId, firstName, lastName, departmentId, salary from employee where employeeId = :employeeId";
     private static final String INSERT =
-            "insert into employee (employeeId, firstName, lastName, departmentId, salary";
+            "insert into employee (firstName, lastName, departmentId, salary) values (:firstName, :lastName, :departmentId, :salary) ";
     private static final String UPDATE
             = "update employee set firstName = :firstName," +
-            " lastNae = :lastName," +
+            " lastName = :lastName," +
             " departmentId = :departmentId," +
-            " salary = :salary were employeeId = :employeeId";
+            " salary = :salary " +
+            " where employeeId = :employeeId";
     private static final String REMOVE =
             "delete from employee where employeeId = :employeeId";
     private static final String EMPLOYEE_ID = "employeeId";
@@ -39,7 +40,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     private static final String DEPARTMENT_ID = "departmentId";
     private static final String SALARY = "salary";
 
-    final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public EmployeeDAOImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate){
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -96,7 +97,8 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 
     @Override
     public void delete(Integer id) {
-        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource(EMPLOYEE_ID, id);
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue(EMPLOYEE_ID, id);
         Optional.of(namedParameterJdbcTemplate.update(REMOVE, mapSqlParameterSource))
                 .filter(this::successfullyUpdated)
                 .orElseThrow(() -> new RuntimeException("Failed to remove department in DB"));
@@ -110,6 +112,8 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             employee.setEmployeeId(resultSet.getInt(EMPLOYEE_ID));
             employee.setFirstName(resultSet.getString(FIRST_NAME));
             employee.setLastName(resultSet.getString(LAST_NAME));
+            employee.setDepartmentId(resultSet.getInt(DEPARTMENT_ID));
+            employee.setSalary(resultSet.getBigDecimal(SALARY));
             return employee;
         }
     }
